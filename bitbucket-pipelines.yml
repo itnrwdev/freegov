@@ -1,5 +1,5 @@
 # image: tobiasb/php-cli:7.3-debian
-image: rieicp/testing-degov
+image: rieicp/bb_testing
 options:
   docker: true
   # size: 2x
