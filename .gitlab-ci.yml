@@ -30,7 +30,6 @@ system-setup:
 ##########
     - git apply "patches/modified-degov-for-testing-pipelines.patch"
     - composer dump-autoload
-    - rm -rf /home/docker/code/project
     - cd /opt/temp/ && rm -rf project/ && mv -vf freegov-testing/ project/
     - tar cvfz project.tgz project/ > /dev/null 2> /dev/null && rm -rf project/
     - mv -v project.tgz "$__DIR__/"
@@ -47,7 +46,7 @@ test-content:
     - system-setup
   script:
     - tar xvfz project.tgz > /dev/null 2> /dev/null
-    - mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
+    - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
     - bash /opt/docker/pipeline.sh content db_dump
   tags:
     - docker
@@ -58,7 +57,7 @@ test-entities:
     - system-setup
   script:
     - tar xvfz project.tgz > /dev/null 2> /dev/null
-    - mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
+    - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
     - bash /opt/docker/pipeline.sh entities db_dump
   tags:
     - docker
@@ -69,7 +68,7 @@ test-entities:
     #- system-setup
   #script:
     #- tar xvfz project.tgz > /dev/null 2> /dev/null
-    #- mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
+    #- rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
     #- bash /opt/docker/pipeline.sh install install
   #tags:
     #- docker
