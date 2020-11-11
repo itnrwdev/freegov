@@ -23,10 +23,10 @@ system-setup:
     - git checkout master
     - composer install
 ##########
-    - rm -rf docroot/profiles/contrib/degov
-    - cd /builds/rieicp/ && tar cvfz ./freegov.tgz freegov/ > /dev/null 2> /dev/null && ls && mv -v ./freegov.tgz /opt/temp/freegov-testing/docroot/profiles/contrib/freegov.tgz
-    - cd /opt/temp/freegov-testing/docroot/profiles/contrib/ && tar xvfz ./freegov.tgz  > /dev/null 2> /dev/null && rm -rf ./degov/ && mv -v ./freegov/ ./degov/ && rm -f ./freegov.tgz
-    - cd /opt/temp/freegov-testing
+#    - rm -rf docroot/profiles/contrib/degov
+#    - cd /builds/rieicp/ && tar cvfz ./freegov.tgz freegov/ > /dev/null 2> /dev/null && ls && mv -v ./freegov.tgz /opt/temp/freegov-testing/docroot/profiles/contrib/freegov.tgz
+#    - cd /opt/temp/freegov-testing/docroot/profiles/contrib/ && tar xvfz ./freegov.tgz  > /dev/null 2> /dev/null && rm -rf ./degov/ && mv -v ./freegov/ ./degov/ && rm -f ./freegov.tgz
+#    - cd /opt/temp/freegov-testing
 ##########
     - git apply "patches/modified-degov-for-testing-pipelines.patch"
     - composer dump-autoload
@@ -37,7 +37,7 @@ system-setup:
   artifacts:
     paths:
       - project.tgz
-    expire_in: 2 hours
+    expire_in: 3 hours
   tags:
     - docker
 
