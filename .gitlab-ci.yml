@@ -14,25 +14,9 @@ system-setup:
     - __DIR__=$(pwd)
 #    - ls /opt/docker
 #    - ls /home/docker/code
-    - ls /builds/rieicp
-    - git clone https://bitbucket.org/nwitnrw/composer-dir-zip.git && cd composer-dir-zip && git checkout master
-    - mkdir -p /root/.config && mv -f composer-dir.tgz /root/.config/ && cd /root/.config/ && tar xvfz composer-dir.tgz > /dev/null 2> /dev/null && rm -f composer-dir.tgz
-    - mkdir -p /opt/temp && cd /opt/temp
-    - git clone https://nwitnrw@bitbucket.org/nwitnrw/freegov-testing.git
-    - cd freegov-testing
-    - git checkout master
-    - composer install
-##########
-#    - rm -rf docroot/profiles/contrib/degov
-#    - cd /builds/rieicp/ && tar cvfz ./freegov.tgz freegov/ > /dev/null 2> /dev/null && ls && mv -v ./freegov.tgz /opt/temp/freegov-testing/docroot/profiles/contrib/freegov.tgz
-#    - cd /opt/temp/freegov-testing/docroot/profiles/contrib/ && tar xvfz ./freegov.tgz  > /dev/null 2> /dev/null && rm -rf ./degov/ && mv -v ./freegov/ ./degov/ && rm -f ./freegov.tgz
-#    - cd /opt/temp/freegov-testing
-##########
-    - git apply "patches/modified-degov-for-testing-pipelines.patch"
-    - composer dump-autoload
-    - cd /opt/temp/ && rm -rf project/ && mv -vf freegov-testing/ project/
-    - tar cvfz project.tgz project/ > /dev/null 2> /dev/null && rm -rf project/
-    - mv -v project.tgz "$__DIR__/"
+#    - ls /builds/rieicp
+    - bash /opt/docker/composer_setup.sh
+    - mv -v /home/docker/code/project.tgz "$__DIR__/"
   artifacts:
     paths:
       - project.tgz
