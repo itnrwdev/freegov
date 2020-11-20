@@ -1,5 +1,5 @@
 image:
-  name: rieicp/gitlab_testing
+  name: rieicp/gitlab_and_local_testing
 
 stages:
   - setup
