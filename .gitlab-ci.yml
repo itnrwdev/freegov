@@ -20,7 +20,7 @@ system-setup:
   artifacts:
     paths:
       - project.tgz
-    expire_in: 2 hours
+    expire_in: 1 hours
   tags:
     - docker
 
