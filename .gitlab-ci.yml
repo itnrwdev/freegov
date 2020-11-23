@@ -24,27 +24,38 @@ system-setup:
   tags:
     - docker
 
-test-content:
+#test-content:
+#  stage: testing
+#  dependencies: 
+#    - system-setup
+#  script:
+#    - tar xvfz project.tgz > /dev/null 2> /dev/null
+#    - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
+#    - bash /opt/docker/pipeline.sh content db_dump
+#  tags:
+#    - docker
+
+test-content-creation:
   stage: testing
   dependencies: 
     - system-setup
   script:
     - tar xvfz project.tgz > /dev/null 2> /dev/null
     - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
-    - bash /opt/docker/pipeline.sh content db_dump
+    - bash /opt/docker/pipeline.sh content_creation db_dump
   tags:
     - docker
 
-test-entities:
-  stage: testing
-  dependencies: 
-    - system-setup
-  script:
-    - tar xvfz project.tgz > /dev/null 2> /dev/null
-    - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
-    - bash /opt/docker/pipeline.sh entities db_dump
-  tags:
-    - docker
+#test-entities:
+#  stage: testing
+#  dependencies: 
+#    - system-setup
+#  script:
+#    - tar xvfz project.tgz > /dev/null 2> /dev/null
+#    - rm -rf /home/docker/code/project/ && mv -f project/ /home/docker/code/ && rm -f project.tgz && cd /home/docker/code
+#    - bash /opt/docker/pipeline.sh entities db_dump
+#  tags:
+#    - docker
 
 #test-install:
   #stage: testing
